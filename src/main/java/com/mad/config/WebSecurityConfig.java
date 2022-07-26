@@ -38,15 +38,40 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return super.authenticationManagerBean();
 	}
 
-	@Override
+	/*@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
-		httpSecurity.csrf().disable()
-				.authorizeRequests().antMatchers("/authenticate").permitAll().
-						anyRequest().authenticated().and().
-						exceptionHandling().and().sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		
+		httpSecurity
+		.authorizeRequests()
+		.antMatchers("/**")
+		.permitAll();
+		httpSecurity
+		.csrf()
+		.disable()
+		.authorizeRequests()
+		.antMatchers("/authenticate")
+		.permitAll()
+		.anyRequest()
+		.authenticated()
+		.and()
+		.exceptionHandling()
+		.and()
+		.sessionManagement()
+		.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+		
 
-	}
+	}*/
+	
+	@Override
+	  protected void configure(HttpSecurity http) 
+	    throws Exception {
+	    http
+	    .csrf()
+	    .disable()
+	    .authorizeRequests().
+	    anyRequest().
+	    permitAll();
+	  }
 
 }
