@@ -12,23 +12,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Builder
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity(name="MADUser")
-@Table(name="MADUser")
 @ToString
-public class MADUser {
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Entity(name="UserToken")
+@Table(name="UserToken")
+public class UserToken {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	private String firstName;
-	private String lastName;
-	private String username;
-	private String email;
-	private String password;
-	private int isReminderOn;
+	private int id;
+	private String token;
+	private String userId;
 
 }

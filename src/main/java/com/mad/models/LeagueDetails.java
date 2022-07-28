@@ -1,5 +1,6 @@
 package com.mad.models;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,25 +11,24 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.Setter;
 
-@Builder
+
 @Getter
-@AllArgsConstructor
+@Setter
+@Builder
 @NoArgsConstructor
-@Entity(name="MADUser")
-@Table(name="MADUser")
-@ToString
-public class MADUser {
+@AllArgsConstructor
+@Entity(name="LeagueDetails")
+@Table(name="LeagueDetails")
+public class LeagueDetails {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	private String firstName;
-	private String lastName;
-	private String username;
-	private String email;
-	private String password;
-	private int isReminderOn;
+	private int id;
+	public String leagueName;
+	public int userId;
+	public String accessCode; // append id-leagueId-userId -> unique
+	
 
 }
