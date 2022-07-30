@@ -39,5 +39,11 @@ public class UserController {
 		
 		return  ResponseEntity.ok(leagueMemebersRepository.findbyUserId(userId).get());
 	}
+	
+	@PostMapping("/user/{userId}/increment/{num}")
+	public ResponseEntity<MADUser> saveUser(@PathVariable int userId,@PathVariable int num){
+		
+		return  ResponseEntity.ok(myUserDetailsService.incrementCoins(userId,num).get());
+	}
 
 }

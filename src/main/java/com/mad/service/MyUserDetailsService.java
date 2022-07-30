@@ -33,9 +33,18 @@ public class MyUserDetailsService implements UserDetailsService {
     	
     	MADUser existingUser=MADUserRepository.findByUsername(madUser.getUsername());
     	if(existingUser!=null) {
-    		return Optional.of(existingUser);
+    		madUser.setId(existingUser.getId());
+    	}else {
+    	madUser.setCoins(1);
+    	madUser.setIsReminderOn(1);
     	}
     return Optional.of(MADUserRepository.save(madUser));
     
     }
+
+	public Optional<MADUser> incrementCoins(int userId, int num) {
+		MADUser user=MADUserRepository.findById(userId).get();
+		user.setCoins(user.getCoins()+num);
+		return Optional.of(MADUserRepository.save(user));
+	}
 }

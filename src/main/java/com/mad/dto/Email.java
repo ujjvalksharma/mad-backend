@@ -1,6 +1,6 @@
 package com.mad.dto;
 
-import com.mad.models.LeagueMemebers;
+import java.io.Serializable;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,19 +9,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+
 @Builder
 @Setter
 @Getter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-public class LeagueRankingDetails {
-	
-	private int leagueId;
-	private LeagueMemebers leagueMemebers;
-	private int points;
-	private int rank;
-	
-	
+public class Email  implements Serializable{
 
+	String senderEmail;
+	String subject;
+	String body;
 }

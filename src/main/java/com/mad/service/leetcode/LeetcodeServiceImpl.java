@@ -1,6 +1,5 @@
 package com.mad.service.leetcode;
 
-import leetcode.api.model.StatsResponse;
 import org.springframework.stereotype.Service;
 
 import com.mad.dto.LeetcodeUserDetails;

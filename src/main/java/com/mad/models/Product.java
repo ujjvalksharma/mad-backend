@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.mad.models.MADUser.MADUserBuilder;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,24 +15,23 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+
 @Builder
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name="MADUser")
-@Table(name="MADUser")
+@Entity(name="Product")
+@Table(name="Product")
 @ToString
-public class MADUser {
+public class Product {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-    private String name;
-	private String username;
-	private String email;
-	private String password;
-	private int isReminderOn;
-	private int coins;
+    private String title;
+	private double price;
+	private String description;
+	private String category;
+	private int image;
 
 }

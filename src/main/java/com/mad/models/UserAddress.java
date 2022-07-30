@@ -10,27 +10,24 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 @Builder
 @Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name="MADUser")
-@Table(name="MADUser")
+@Entity(name="UserAddress")
+@Table(name="UserAddress")
 @ToString
-public class MADUser {
+public class UserAddress {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-    private String name;
-	private String username;
-	private String email;
-	private String password;
-	private int isReminderOn;
-	private int coins;
+    private String userId;
+	private String street;
+	private String city;
+	private String state;
+
 
 }
