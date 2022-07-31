@@ -350,3 +350,15 @@ success <br />
 <br />]
 <br />
 <br />
+## Api [POST]: http://localhost:8080/league/search/dummy<br />
+### Request Body: <br />
+### Response: <br />
+[ <br />
+    { <br />
+        "id": 2, <br />
+        "leagueName": "dummy-league", <br />
+        "userId": 1, <br />
+        "accessCode": "Mi1kdW1teS1sZWFndWUtMQ==" <br />
+    } <br />
+] <br />
+<br />
