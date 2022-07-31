@@ -178,8 +178,30 @@ success <br />
     "image": "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg"
   }
 ]
-
+<br />
 ### Response: Same as Request Body <br />
 
 ## Api [GET]: http://localhost:8080/product <br />
 ### Response: Same as Request Body/Response Body of POST Api of http://localhost:8080/product <br />
+
+<br />
+
+# User Address Service: <br />
+## Api [POST]: http://localhost:8080/userAddress <br />
+### Request Body: <br />
+{ <br />
+	 "userId":"1", <br />
+	 "street":"dummy address", <br />
+	 "city": "dummy city", <br />
+	 "state" :"dummy state" <br />
+} <br />
+### Response: <br />
+{ <br />
+    "id": 1, <br />
+    "userId": "1", <br />
+    "street": "dummy address", <br />
+    "city": "dummy city", <br />
+    "state": "dummy state" <br />
+} <br />
+<br />
+<br />
