@@ -333,3 +333,20 @@ success <br />
 <br />]
 <br />
 <br />
+## Api [POST]: http://localhost:8080/league/accessCode/Mi1kdW1teS1sZWFndWUtMQ==/user/1 <br />
+### Request Body: <br />
+### Response: <br />
+[ <br />
+    { <br />
+        "id": 3, <br />
+        "userId": 1, <br />
+        "leagueId": 2, <br />
+        "joiningDate": "31/07/2022 05:03:16", <br />
+        "easySolved": 299, <br />
+        "mediumSolved": 559, <br />
+        "hardSolved": 109, <br />
+        "totalSolved": 967 <br />
+   <br /> }
+<br />]
+<br />
+<br />
