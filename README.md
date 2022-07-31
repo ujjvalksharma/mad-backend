@@ -285,3 +285,51 @@ success <br />
 } <br />
 <br />
 <br />
+# League Service: <br />
+## Api [POST]: http://localhost:8080/league <br />
+### Request Body: <br />
+{<br />
+     "leagueName":"dummy-league", <br />
+     "userId":2 <br />
+<br />} <br />
+### Response: <br />
+{<br />
+    "id": 3,<br />
+    "leagueName": "dummy-league",<br />
+    "userId": 2,<br />
+    "accessCode": "My1kdW1teS1sZWFndWUtMg==" <br />
+<br />} <br />
+<br />
+<br />
+## Api [POST]: http://localhost:8080/league/3/user/2 <br />
+### Request Body: <br />
+### Response: <br />
+<br />{<br />
+    "id": 5,<br />
+    "userId": 2,<br />
+    "leagueId": 3,<br />
+    "joiningDate": "31/07/2022 04:53:36",<br />
+    "easySolved": 299,<br />
+    "mediumSolved": 559,<br />
+    "hardSolved": 109,<br />
+    "totalSolved": 967<br />
+<br />}
+<br />
+<br />
+## Api [GET]: http://localhost:8080/league/2/users <br />
+### Request Body: <br />
+### Response: <br />
+[ <br />
+    { <br />
+        "id": 3, <br />
+        "userId": 1, <br />
+        "leagueId": 2, <br />
+        "joiningDate": "31/07/2022 05:03:16", <br />
+        "easySolved": 299, <br />
+        "mediumSolved": 559, <br />
+        "hardSolved": 109, <br />
+        "totalSolved": 967 <br />
+   <br /> }
+<br />]
+<br />
+<br />
