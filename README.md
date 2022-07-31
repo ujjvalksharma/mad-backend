@@ -333,7 +333,7 @@ success <br />
 <br />]
 <br />
 <br />
-## Api [POST]: http://localhost:8080/league/accessCode/Mi1kdW1teS1sZWFndWUtMQ==/user/1 <br />
+## Api [GET]: http://localhost:8080/league/accessCode/Mi1kdW1teS1sZWFndWUtMQ==/user/1 <br />
 ### Request Body: <br />
 ### Response: <br />
 [ <br />
@@ -350,7 +350,7 @@ success <br />
 <br />]
 <br />
 <br />
-## Api [POST]: http://localhost:8080/league/search/dummy<br />
+## Api [GET]: http://localhost:8080/league/search/dummy<br />
 ### Request Body: <br />
 ### Response: <br />
 [ <br />
@@ -361,4 +361,21 @@ success <br />
         "accessCode": "Mi1kdW1teS1sZWFndWUtMQ==" <br />
     } <br />
 ] <br />
+<br />
+
+## Api [GET]: http://localhost:8080/league/search/2/users/ujjval<br />
+### Request Body: <br />
+### Response: <br />
+[<br />
+    {<br />
+        "id": 1, <br />
+        "name": "Ujjval", <br />
+        "username": "ujjvalksharma", <br />
+        "email": "ujjvalksharma@gmail.com", <br />
+        "password": "Ujjval", <br />
+        "isReminderOn": 1, <br />
+        "coins": 100 <br />
+    }<br />
+]<br />
+<br />
 <br />
