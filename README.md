@@ -205,3 +205,43 @@ success <br />
 } <br />
 <br />
 <br />
+
+# User Service: <br />
+## Api [POST]: http://localhost:8080/user <br />
+### Request Body: <br />
+{  <br />
+"name" : "Ujjval", <br />
+"username" : "ujjvalksharma123", <br />
+"email" : "ujjvalksharma@gmail.com", <br />
+"password" : "Ujjval", <br />
+"isReminderOn" : 1, <br />
+"coins" : 100 <br />
+<br />
+} <br />
+### Response: <br />
+{  <br />
+"id": 1, <br />
+"name" : "Ujjval", <br />
+"username" : "ujjvalksharma123", <br />
+"email" : "ujjvalksharma@gmail.com", <br />
+"password" : "Ujjval", <br />
+"isReminderOn" : 1, <br />
+"coins" : 100 <br />
+<br />
+} <br />
+<br />
+<br />
+## Api [PUT]: http://localhost:8080/user/1/increment/-200 <br />
+### Response: <br />
+{  <br />
+"id": 1, <br />
+"name" : "Ujjval", <br />
+"username" : "ujjvalksharma123", <br />
+"email" : "ujjvalksharma@gmail.com", <br />
+"password" : "Ujjval", <br />
+"isReminderOn" : 1, <br />
+"coins" : -200 <br />
+<br />
+} <br />
+<br />
+<br />
