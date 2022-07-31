@@ -178,8 +178,204 @@ success <br />
     "image": "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg"
   }
 ]
-
+<br />
 ### Response: Same as Request Body <br />
 
 ## Api [GET]: http://localhost:8080/product <br />
 ### Response: Same as Request Body/Response Body of POST Api of http://localhost:8080/product <br />
+
+<br />
+
+# User Address Service: <br />
+## Api [POST]: http://localhost:8080/userAddress <br />
+### Request Body: <br />
+{ <br />
+	 "userId":"1", <br />
+	 "street":"dummy address", <br />
+	 "city": "dummy city", <br />
+	 "state" :"dummy state" <br />
+} <br />
+### Response: <br />
+{ <br />
+    "id": 1, <br />
+    "userId": "1", <br />
+    "street": "dummy address", <br />
+    "city": "dummy city", <br />
+    "state": "dummy state" <br />
+} <br />
+<br />
+<br />
+
+# User Service: <br />
+## Api [POST]: http://localhost:8080/user <br />
+### Request Body: <br />
+{  <br />
+"name" : "Ujjval", <br />
+"username" : "ujjvalksharma123", <br />
+"email" : "ujjvalksharma@gmail.com", <br />
+"password" : "Ujjval", <br />
+"isReminderOn" : 1, <br />
+"coins" : 100 <br />
+<br />
+} <br />
+### Response: <br />
+{  <br />
+"id": 1, <br />
+"name" : "Ujjval", <br />
+"username" : "ujjvalksharma123", <br />
+"email" : "ujjvalksharma@gmail.com", <br />
+"password" : "Ujjval", <br />
+"isReminderOn" : 1, <br />
+"coins" : 100 <br />
+<br />
+} <br />
+<br />
+<br />
+## Api [PUT]: http://localhost:8080/user/1/increment/-200 <br />
+### Response: <br />
+{  <br />
+"id": 1, <br />
+"name" : "Ujjval", <br />
+"username" : "ujjvalksharma123", <br />
+"email" : "ujjvalksharma@gmail.com", <br />
+"password" : "Ujjval", <br />
+"isReminderOn" : 1, <br />
+"coins" : -200 <br />
+<br />
+} <br />
+<br />
+<br />
+# Authentication Service: <br />
+## Api [POST]: http://localhost:8080/authenticate <br />
+### Request Body: <br />
+{ <br />
+"username":"ujjvalksharma", <br />
+	"password":"Ujjval" <br />
+} <br />
+### Response: <br />
+{ <br />
+    "jwt": <br /> "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1amp2YWxrc2hhcm1hIiwiZXhwIjoxNjU5MzAyMDY3LCJpYXQiOjE2NTkyNjYwNjd9.29PEA5HNGqenEdkoN1uKnWo_fUJQgEF7evoXC0_YEls", <br />
+    "maduser": { <br />
+        "id": 1, <br />
+        "name": "Ujjval", <br />
+        "username": "ujjvalksharma", <br />
+        "email": "ujjvalksharma@gmail.com", <br />
+        "password": "Ujjval", <br />
+        "isReminderOn": 1, <br />
+        "coins": 100 <br />
+    } <br />
+} <br />
+<br />
+<br />
+
+## Api [GET]: http://localhost:8080/validate/username/ujjvalksharma <br />
+### Request Body: <br />
+### Response: <br />
+{ <br />
+    "jwt": <br /> "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1amp2YWxrc2hhcm1hIiwiZXhwIjoxNjU5MzAyMDY3LCJpYXQiOjE2NTkyNjYwNjd9.29PEA5HNGqenEdkoN1uKnWo_fUJQgEF7evoXC0_YEls", <br />
+    "maduser": { <br />
+        "id": 1, <br />
+        "name": "Ujjval", <br />
+        "username": "ujjvalksharma", <br />
+        "email": "ujjvalksharma@gmail.com", <br />
+        "password": "Ujjval", <br />
+        "isReminderOn": 1, <br />
+        "coins": 100 <br />
+    } <br />
+} <br />
+<br />
+<br />
+# League Service: <br />
+## Api [POST]: http://localhost:8080/league <br />
+### Request Body: <br />
+{<br />
+     "leagueName":"dummy-league", <br />
+     "userId":2 <br />
+<br />} <br />
+### Response: <br />
+{<br />
+    "id": 3,<br />
+    "leagueName": "dummy-league",<br />
+    "userId": 2,<br />
+    "accessCode": "My1kdW1teS1sZWFndWUtMg==" <br />
+<br />} <br />
+<br />
+<br />
+## Api [POST]: http://localhost:8080/league/3/user/2 <br />
+### Request Body: <br />
+### Response: <br />
+<br />{<br />
+    "id": 5,<br />
+    "userId": 2,<br />
+    "leagueId": 3,<br />
+    "joiningDate": "31/07/2022 04:53:36",<br />
+    "easySolved": 299,<br />
+    "mediumSolved": 559,<br />
+    "hardSolved": 109,<br />
+    "totalSolved": 967<br />
+<br />}
+<br />
+<br />
+## Api [GET]: http://localhost:8080/league/2/users <br />
+### Request Body: <br />
+### Response: <br />
+[ <br />
+    { <br />
+        "id": 3, <br />
+        "userId": 1, <br />
+        "leagueId": 2, <br />
+        "joiningDate": "31/07/2022 05:03:16", <br />
+        "easySolved": 299, <br />
+        "mediumSolved": 559, <br />
+        "hardSolved": 109, <br />
+        "totalSolved": 967 <br />
+   <br /> }
+<br />]
+<br />
+<br />
+## Api [GET]: http://localhost:8080/league/accessCode/Mi1kdW1teS1sZWFndWUtMQ==/user/1 <br />
+### Request Body: <br />
+### Response: <br />
+[ <br />
+    { <br />
+        "id": 3, <br />
+        "userId": 1, <br />
+        "leagueId": 2, <br />
+        "joiningDate": "31/07/2022 05:03:16", <br />
+        "easySolved": 299, <br />
+        "mediumSolved": 559, <br />
+        "hardSolved": 109, <br />
+        "totalSolved": 967 <br />
+   <br /> }
+<br />]
+<br />
+<br />
+## Api [GET]: http://localhost:8080/league/search/dummy<br />
+### Request Body: <br />
+### Response: <br />
+[ <br />
+    { <br />
+        "id": 2, <br />
+        "leagueName": "dummy-league", <br />
+        "userId": 1, <br />
+        "accessCode": "Mi1kdW1teS1sZWFndWUtMQ==" <br />
+    } <br />
+] <br />
+<br />
+
+## Api [GET]: http://localhost:8080/league/search/2/users/ujjval<br />
+### Request Body: <br />
+### Response: <br />
+[<br />
+    {<br />
+        "id": 1, <br />
+        "name": "Ujjval", <br />
+        "username": "ujjvalksharma", <br />
+        "email": "ujjvalksharma@gmail.com", <br />
+        "password": "Ujjval", <br />
+        "isReminderOn": 1, <br />
+        "coins": 100 <br />
+    }<br />
+]<br />
+<br />
+<br />
