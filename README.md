@@ -245,3 +245,43 @@ success <br />
 } <br />
 <br />
 <br />
+# Authentication Service: <br />
+## Api [POST]: http://localhost:8080/authenticate <br />
+### Request Body: <br />
+{ <br />
+"username":"ujjvalksharma", <br />
+	"password":"Ujjval" <br />
+} <br />
+### Response: <br />
+{ <br />
+    "jwt": <br /> "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1amp2YWxrc2hhcm1hIiwiZXhwIjoxNjU5MzAyMDY3LCJpYXQiOjE2NTkyNjYwNjd9.29PEA5HNGqenEdkoN1uKnWo_fUJQgEF7evoXC0_YEls", <br />
+    "maduser": { <br />
+        "id": 1, <br />
+        "name": "Ujjval", <br />
+        "username": "ujjvalksharma", <br />
+        "email": "ujjvalksharma@gmail.com", <br />
+        "password": "Ujjval", <br />
+        "isReminderOn": 1, <br />
+        "coins": 100 <br />
+    } <br />
+} <br />
+<br />
+<br />
+
+## Api [GET]: http://localhost:8080/validate/username/ujjvalksharma <br />
+### Request Body: <br />
+### Response: <br />
+{ <br />
+    "jwt": <br /> "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1amp2YWxrc2hhcm1hIiwiZXhwIjoxNjU5MzAyMDY3LCJpYXQiOjE2NTkyNjYwNjd9.29PEA5HNGqenEdkoN1uKnWo_fUJQgEF7evoXC0_YEls", <br />
+    "maduser": { <br />
+        "id": 1, <br />
+        "name": "Ujjval", <br />
+        "username": "ujjvalksharma", <br />
+        "email": "ujjvalksharma@gmail.com", <br />
+        "password": "Ujjval", <br />
+        "isReminderOn": 1, <br />
+        "coins": 100 <br />
+    } <br />
+} <br />
+<br />
+<br />
