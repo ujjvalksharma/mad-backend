@@ -1,5 +1,8 @@
 package com.mad.models;
 
+import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,14 +27,15 @@ import lombok.ToString;
 @Entity(name="Product")
 @Table(name="Product")
 @ToString
-public class Product {
+public class Product implements Serializable{
 	
 	@Id
 	private int id;
     private String title;
 	private double price;
+	@Column(columnDefinition="text")
 	private String description;
 	private String category;
-	private int image;
+	private String image;
 
 }

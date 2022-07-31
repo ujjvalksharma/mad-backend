@@ -102,7 +102,7 @@ public class LeagueService {
 		for(LeagueMemebers leagueMemeber: leagueMemebers) {
 			userIdInLeague.add(leagueMemeber.getUserId());
 		}
-		List<MADUser>  MADUsers=mADUserRepository.findByNameOrUsernameContaining(key).get();
+		List<MADUser>  MADUsers=mADUserRepository.findByNameOrUsernameContainingIgnoreCase(key,key).get();
 		
 		return Optional.of(MADUsers
 				.stream()

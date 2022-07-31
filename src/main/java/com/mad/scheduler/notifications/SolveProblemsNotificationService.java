@@ -32,8 +32,10 @@ public class SolveProblemsNotificationService {
 	@Autowired
 	UserTokenRepository userTokenRepository;
 	
-	@Scheduled(fixedRate = 43200) // for every 43200->12 hours and 5000 for every 5 secs
+	@Scheduled(fixedRate = 4320000) // for every 43200->12 hours and 5000 for every 5 secs
 	public void sendNotificationToSolveProblems() {
+		
+		System.out.println("notification scheduler is running");
 		List<MADUser> usersToBeReminded=mADUserRepository.findByIsReminderOn(1).get();
 		
 	for(int i=0;i<usersToBeReminded.size();i++) {

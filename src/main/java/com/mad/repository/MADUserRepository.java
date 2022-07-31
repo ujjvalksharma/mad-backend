@@ -15,7 +15,7 @@ public interface MADUserRepository extends JpaRepository<MADUser, Integer>{
 
 	public MADUser findByUsername(String userName);
 	
-	public Optional<List<MADUser>> findByNameOrUsernameContaining(String key);
+	public Optional<List<MADUser>> findByNameOrUsernameContainingIgnoreCase(String name, String username);
 	
 	public Optional<List<MADUser>> findByIsReminderOn(int isReminderOn);
 }

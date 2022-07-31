@@ -1,5 +1,7 @@
 package com.mad.models;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +21,7 @@ import lombok.ToString;
 @Entity(name="UserAddress")
 @Table(name="UserAddress")
 @ToString
-public class UserAddress {
+public class UserAddress implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,6 +30,5 @@ public class UserAddress {
 	private String street;
 	private String city;
 	private String state;
-
 
 }
