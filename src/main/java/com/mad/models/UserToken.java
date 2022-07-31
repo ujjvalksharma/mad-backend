@@ -1,5 +1,7 @@
 package com.mad.models;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +21,7 @@ import lombok.ToString;
 @Getter
 @Entity(name="UserToken")
 @Table(name="UserToken")
-public class UserToken {
+public class UserToken implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

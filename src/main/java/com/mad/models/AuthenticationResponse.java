@@ -9,13 +9,13 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 
-@Builder
 @Getter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-public class AuthenticationResponse implements Serializable {
+@Builder
+public class AuthenticationResponse implements Serializable  {
 
     private String jwt;
-
+    private MADUser mADUser;
 }

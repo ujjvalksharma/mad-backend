@@ -14,9 +14,9 @@ import org.springframework.data.jpa.repository.Query;
 @Repository
 public interface LeagueMemebersRepository extends JpaRepository<LeagueMemebers, Integer>{
 
-	@Query(value ="Select * from league_memebers lm where  league_id=%?1%", nativeQuery = true)
+	@Query(value ="Select * from league_memebers lm where  league_id= ?1", nativeQuery = true)
 	Optional<List<LeagueMemebers>> findbyLeagueId(int leagueId);
 	
-	@Query(value ="Select * from league_memebers lm where  user_id=%?1%", nativeQuery = true)
+	@Query(value ="Select * from league_memebers lm where  user_id= ?1", nativeQuery = true)
 	Optional<List<LeagueMemebers>> findbyUserId(int userId);
 }

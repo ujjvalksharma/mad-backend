@@ -2,6 +2,7 @@ package com.mad.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,13 +20,13 @@ import com.mad.service.LeagueService;
 @RestController
 public class LeagueController {
 	
-	
+	@Autowired
 	LeagueService leagueService;
 	
 	@PostMapping("/league")
-	public ResponseEntity<LeagueDetails> saveLeague( @RequestBody LeagueDetails LeagueDetails){
+	public ResponseEntity<LeagueDetails> saveLeague(@RequestBody LeagueDetails leagueDetails){
 		
-		return  ResponseEntity.ok(leagueService.saveLeague(LeagueDetails).get());
+		return  ResponseEntity.ok(leagueService.saveLeague(leagueDetails).get());
 	}
 	
 	@PostMapping("/league/{leagueId}/user/{userId}")
@@ -41,7 +42,7 @@ public class LeagueController {
 		return  ResponseEntity.ok(leagueService.findMembersOfLeague(leagueId).get());
 	}
 	
-	@PostMapping("/league/accessCode/{accessCode}/user/{userId}")
+	@PostMapping("/league/accesscode/{accessCode}/user/{userId}")
 	public ResponseEntity<LeagueMemebers> addMemberToLeagueByAccessCode(@PathVariable String accessCode
 			,@PathVariable int userId){
 		
@@ -66,8 +67,10 @@ public class LeagueController {
 		
 	}
 	
-	@PutMapping("league/{leagueId}/rank/memebers")
+	@GetMapping("league/{leagueId}/rank/memebers") 
 	public  ResponseEntity<List<LeagueRankingDetails>> rankLeagueMembersByLeague(@PathVariable int leagueId){
+		//to do: buggy, same user is saved twice in league members
+		//to do: ranking is not correct
 		return ResponseEntity.ok(leagueService.rankMembers(leagueService.findMembersOfLeague(leagueId).get()).get());
 		
 	}

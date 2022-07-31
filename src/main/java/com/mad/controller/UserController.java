@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mad.models.LeagueMemebers;
 import com.mad.models.MADUser;
+import com.mad.models.UserToken;
 import com.mad.repository.LeagueMemebersRepository;
+import com.mad.repository.UserTokenRepository;
 import com.mad.service.MyUserDetailsService;
 
 
@@ -28,19 +30,28 @@ public class UserController {
 	@Autowired
 	LeagueMemebersRepository leagueMemebersRepository;
 	
+	@Autowired
+	UserTokenRepository userTokenRepository;
+	
 	@PostMapping("/user")
 	public ResponseEntity<MADUser> saveUser( @RequestBody MADUser madUser){
 		
 		return  ResponseEntity.ok(myUserDetailsService.save(madUser).get());
 	}
 	
+	@PostMapping("/usertoken")
+	public ResponseEntity<UserToken> saveUserToken( @RequestBody UserToken userToken){
+		
+		return  ResponseEntity.ok(userTokenRepository.save(userToken));
+	}
+	
 	@GetMapping("/user/{userId}/League")
 	public ResponseEntity<List<LeagueMemebers>> getLeagueUserisPartOf(@PathVariable int userId){
-		
+		//to do: incorrect results
 		return  ResponseEntity.ok(leagueMemebersRepository.findbyUserId(userId).get());
 	}
 	
-	@PostMapping("/user/{userId}/increment/{num}")
+	@PutMapping("/user/{userId}/increment/{num}")
 	public ResponseEntity<MADUser> saveUser(@PathVariable int userId,@PathVariable int num){
 		
 		return  ResponseEntity.ok(myUserDetailsService.incrementCoins(userId,num).get());

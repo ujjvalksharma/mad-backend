@@ -46,6 +46,7 @@ public class LeagueService {
 
 	public Optional<LeagueDetails> saveLeague(LeagueDetails leagueDetails) {
 
+		leagueDetails.setAccessCode("");
 		leagueDetails=leagueRepository.save(leagueDetails);
 		saveUserToLeagueMember(leagueDetails.getId(),leagueDetails.getUserId());
 		
@@ -54,12 +55,12 @@ public class LeagueService {
 		String encodedAccessCode = Base64.getEncoder().encodeToString(accessCodeByte);
 		
 		leagueDetails.setAccessCode(encodedAccessCode);
-		
+		System.out.println("save league details: "+leagueDetails);
 		return Optional.of(leagueRepository.save(leagueDetails));
 	}
 
 	public Optional<LeagueMemebers> saveUserToLeagueMember(int leagueId, int userId) {
-		//
+		// todo: check if a user exisit in a league
 	    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
 	    Date date = new Date();  
 	    

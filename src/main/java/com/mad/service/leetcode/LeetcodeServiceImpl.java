@@ -49,11 +49,13 @@ public class LeetcodeServiceImpl implements LeetcodeService {
 
                 // User not found
                 if (jsonObject.has("errors")) {
+                	return null;
                   //  return StatsResponse.error("error", "user does not exist");
                 } else { // Parse user info
                     return decodeGraphqlJson(jsonObject);
                 }
             } else {
+            	return null;
             //    return StatsResponse.error("error", jsonObject.getString("error"));
             }
         } catch (IOException | JSONException ex) {
@@ -116,6 +118,7 @@ public class LeetcodeServiceImpl implements LeetcodeService {
             }
 
         } catch (JSONException ex) {
+        	return null;
            // return StatsResponse.error("error", ex.getMessage());
         }
 

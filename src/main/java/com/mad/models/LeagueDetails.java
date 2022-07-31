@@ -1,6 +1,8 @@
 package com.mad.models;
 
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +14,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 
 @Getter
@@ -21,7 +24,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity(name="LeagueDetails")
 @Table(name="LeagueDetails")
-public class LeagueDetails {
+@ToString
+public class LeagueDetails implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
