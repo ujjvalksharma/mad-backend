@@ -6,14 +6,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 
-@FeignClient(url="https://fcm.googleapis.com",name="USER-CLIENT")
+import com.mad.dto.Notification;
+
+@FeignClient(url="https://fcm.googleapis.com",name="notification-feign-client")
 public interface FireBaseNotificationClient {
 
-	@PostMapping("/fcm/send")
+   @PostMapping(path = "/fcm/send", consumes = "application/json", produces = "application/json")
 	public void sendNotification(
-			@RequestHeader("Authorization") String authorization,
-			@RequestHeader("Content-Type") String contentType,
-			@RequestBody JSONObject json
+			@RequestHeader(value ="Authorization") String authorization,
+			@RequestHeader(value ="Content-Type") String contentType,
+			@RequestBody Notification notification
 			);
 	
 }

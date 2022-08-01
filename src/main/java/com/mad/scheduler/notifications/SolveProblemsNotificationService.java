@@ -9,6 +9,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.mad.client.FireBaseNotificationClient;
+import com.mad.dto.Notification;
 import com.mad.models.MADUser;
 import com.mad.models.UserToken;
 import com.mad.repository.MADUserRepository;
@@ -42,13 +43,12 @@ public class SolveProblemsNotificationService {
 		MADUser madUser=usersToBeReminded.get(i);
 		List<UserToken> userTokens=userTokenRepository.findByUserId(madUser.getId()).get();
 		for(UserToken userToken: userTokens) {
-		JSONObject json = new JSONObject();
-        json.put("to", userToken.getToken());
-        JSONObject notification = new JSONObject();
-        notification.put("title", "Stay ahead in the leagues!!");
-        notification.put("body", "Solve leetcode 123");
-        json.put("notification", notification);
-        fireBaseNotificationClient.sendNotification(AUTHORIZATION, contentType, json);
+			Notification notificationOuterObj=new Notification();
+			notificationOuterObj.setTo(userToken.getToken());
+			Notification.notification innerObject=	notificationOuterObj.new notification();
+			innerObject.setBody("Solve leetcode problem 123");
+			innerObject.setTitle("Stay ahead in the leagues!!");
+        fireBaseNotificationClient.sendNotification(AUTHORIZATION, contentType, notificationOuterObj);
         
 		}
 		
