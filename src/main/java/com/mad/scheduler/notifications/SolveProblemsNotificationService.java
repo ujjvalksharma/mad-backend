@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.mad.client.FireBaseNotificationClient;
 import com.mad.dto.Notification;
+import com.mad.dto.OuterNotification;
 import com.mad.models.MADUser;
 import com.mad.models.UserToken;
 import com.mad.repository.MADUserRepository;
@@ -43,12 +44,19 @@ public class SolveProblemsNotificationService {
 		MADUser madUser=usersToBeReminded.get(i);
 		List<UserToken> userTokens=userTokenRepository.findByUserId(madUser.getId()).get();
 		for(UserToken userToken: userTokens) {
-			Notification notificationOuterObj=new Notification();
-			notificationOuterObj.setTo(userToken.getToken());
-			Notification.notification innerObject=	notificationOuterObj.new notification();
-			innerObject.setBody("Solve leetcode problem 123");
-			innerObject.setTitle("Stay ahead in the leagues!!");
-        fireBaseNotificationClient.sendNotification(AUTHORIZATION, contentType, notificationOuterObj);
+			
+			Notification innerNotificationObj=Notification
+					.builder()
+					.body("Solve leetcode problem 123")
+					.title("Stay ahead in the leagues!!")
+					.build();
+	
+			OuterNotification outerNotification=OuterNotification
+					.builder()
+					.to(userToken.getToken())
+					.notification(innerNotificationObj)
+					.build();
+        fireBaseNotificationClient.sendNotification(AUTHORIZATION, contentType, outerNotification);
         
 		}
 		

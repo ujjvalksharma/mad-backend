@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mad.client.FireBaseNotificationClient;
 import com.mad.dto.Notification;
+import com.mad.dto.OuterNotification;
 
 @RestController
 @EnableFeignClients
@@ -23,7 +24,7 @@ final String AUTHORIZATION="key=AAAASxTK1Zc:APA91bGYwZrw31HYrALDg1Z5o50EY6N4PbME
 	FireBaseNotificationClient fireBaseNotificationClient;
 	
 	@PostMapping("/notification")
-	public ResponseEntity<String>  sendNotification(@RequestBody Notification notificationObj ) {
+	public ResponseEntity<String>  sendNotification(@RequestBody OuterNotification notificationObj ) {
 		System.out.println("notificationObj: "+notificationObj);
         fireBaseNotificationClient.sendNotification(AUTHORIZATION, contentType, notificationObj);
         return ResponseEntity.ok("Success");

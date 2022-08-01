@@ -1,12 +1,10 @@
 package com.mad.client;
 
-import org.json.JSONObject;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
-
-import com.mad.dto.Notification;
+import com.mad.dto.OuterNotification;
 
 @FeignClient(url="https://fcm.googleapis.com",name="notification-feign-client")
 public interface FireBaseNotificationClient {
@@ -15,7 +13,7 @@ public interface FireBaseNotificationClient {
 	public void sendNotification(
 			@RequestHeader(value ="Authorization") String authorization,
 			@RequestHeader(value ="Content-Type") String contentType,
-			@RequestBody Notification notification
+			@RequestBody OuterNotification notification
 			);
 	
 }
