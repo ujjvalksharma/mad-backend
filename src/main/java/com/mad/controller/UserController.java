@@ -17,6 +17,7 @@ import com.mad.models.LeagueMemebers;
 import com.mad.models.MADUser;
 import com.mad.models.UserToken;
 import com.mad.repository.LeagueMemebersRepository;
+import com.mad.repository.MADUserRepository;
 import com.mad.repository.UserTokenRepository;
 import com.mad.service.MyUserDetailsService;
 
@@ -32,6 +33,9 @@ public class UserController {
 	
 	@Autowired
 	UserTokenRepository userTokenRepository;
+	
+	@Autowired
+	MADUserRepository mADUserRepository;
 	
 	@PostMapping("/user")
 	public ResponseEntity<MADUser> saveUser( @RequestBody MADUser madUser){
@@ -55,6 +59,12 @@ public class UserController {
 	public ResponseEntity<MADUser> saveUser(@PathVariable int userId,@PathVariable int num){
 		
 		return  ResponseEntity.ok(myUserDetailsService.incrementCoins(userId,num).get());
+	}
+	
+	@GetMapping("/findAllUser")
+	public ResponseEntity<List<MADUser>>  findAllUser(){
+		//to do: incorrect results
+		return  ResponseEntity.ok(mADUserRepository.findAll());
 	}
 
 }
