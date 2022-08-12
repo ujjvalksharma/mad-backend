@@ -3,6 +3,7 @@ package com.mad.service;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.Collections;
 import java.util.Date;
@@ -46,6 +47,10 @@ public class LeagueService {
 
 	public Optional<LeagueDetails> saveLeague(LeagueDetails leagueDetails) {
 
+		if(leagueRepository.findById(leagueDetails.getId()).isPresent()) {
+			throw new IllegalArgumentException("League Id is already created");
+		}
+			
 		leagueDetails.setAccessCode("");
 		leagueDetails=leagueRepository.save(leagueDetails);
 		saveUserToLeagueMember(leagueDetails.getId(),leagueDetails.getUserId());
@@ -60,6 +65,16 @@ public class LeagueService {
 	}
 
 	public Optional<LeagueMemebers> saveUserToLeagueMember(int leagueId, int userId) {
+		
+		
+		Optional<List<LeagueMemebers>> listOfLeagueIdUserIsPartOf=leagueMemebersRepository
+				.findbyUserIdAndLeagueId(userId, leagueId);
+		
+		if(listOfLeagueIdUserIsPartOf.isPresent()&&listOfLeagueIdUserIsPartOf.get().size()>0) {
+			 throw new IllegalArgumentException("User is already part of the league");
+		}
+		
+		
 		// todo: check if a user exisit in a league
 	    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
 	    Date date = new Date();  
@@ -87,7 +102,7 @@ public class LeagueService {
 		byte[] decoded = Base64.getDecoder().decode(accessCode);
 		String decodedAccessCode=new String(decoded, StandardCharsets.UTF_8);
 		String[] splittedAccessCode=decodedAccessCode.split("-");
-		
+		System.out.println("splittedAccessCode: "+Arrays.toString(splittedAccessCode));
 		return saveUserToLeagueMember(Integer.parseInt(splittedAccessCode[0])
 				,userId);
 	}

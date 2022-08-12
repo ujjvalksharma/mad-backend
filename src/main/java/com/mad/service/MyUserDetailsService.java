@@ -40,14 +40,25 @@ public class MyUserDetailsService implements UserDetailsService {
     	
     	LeetcodeUserDetails leetcodeUserDetails = leetcodeService.getLeetcodeUserDetails(madUser.getUsername());
     	if(leetcodeUserDetails==null) {
-    		madUser.setId(-1);
-    		return Optional.of(madUser);
+    		throw new IllegalArgumentException("This username is not a leetcode username");
     	}
+    	MADUser existingUser=MADUserRepository.findByUsername(madUser.getUsername());
+    	if(existingUser!=null) {
+    		
+    		throw new IllegalArgumentException("You are already a registered user");
+    	}
+    	
+    return Optional.of(MADUserRepository.save(madUser));
+    
+    }
+    
+  public Optional<MADUser> updateUser(MADUser madUser) {
+    	
     	MADUser existingUser=MADUserRepository.findByUsername(madUser.getUsername());
     	if(existingUser!=null) {
     		madUser.setId(existingUser.getId());
     	}else {
-    	madUser.setIsReminderOn(1);
+    	throw new IllegalArgumentException("User doesn't exisit!");
     	}
     return Optional.of(MADUserRepository.save(madUser));
     

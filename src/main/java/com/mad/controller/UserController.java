@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mad.dto.LeagueMemberDTO;
 import com.mad.models.LeagueMemebers;
 import com.mad.models.MADUser;
 import com.mad.models.UserToken;
 import com.mad.repository.LeagueMemebersRepository;
 import com.mad.repository.MADUserRepository;
 import com.mad.repository.UserTokenRepository;
+import com.mad.service.LeagueMemberToLeagueMemberDto;
 import com.mad.service.MyUserDetailsService;
 
 
@@ -37,10 +39,19 @@ public class UserController {
 	@Autowired
 	MADUserRepository mADUserRepository;
 	
+	@Autowired
+	LeagueMemberToLeagueMemberDto leagueMemberToLeagueMemberDto;
+	
 	@PostMapping("/user")
 	public ResponseEntity<MADUser> saveUser( @RequestBody MADUser madUser){
 		
 		return  ResponseEntity.ok(myUserDetailsService.save(madUser).get());
+	}
+	
+	@PutMapping("/user")
+	public ResponseEntity<MADUser> updateUser( @RequestBody MADUser madUser){
+		
+		return  ResponseEntity.ok(myUserDetailsService.updateUser(madUser).get());
 	}
 	
 	@PostMapping("/usertoken")
@@ -50,9 +61,9 @@ public class UserController {
 	}
 	
 	@GetMapping("/user/{userId}/League")
-	public ResponseEntity<List<LeagueMemebers>> getLeagueUserisPartOf(@PathVariable int userId){
+	public ResponseEntity<List<LeagueMemberDTO>> getLeagueUserisPartOf(@PathVariable int userId){
 		//to do: incorrect results
-		return  ResponseEntity.ok(leagueMemebersRepository.findbyUserId(userId).get());
+		return  ResponseEntity.ok(leagueMemberToLeagueMemberDto.convert(leagueMemebersRepository.findbyUserId(userId).get()));
 	}
 	
 	@PutMapping("/user/{userId}/increment/{num}")

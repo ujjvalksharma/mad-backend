@@ -11,10 +11,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mad.dto.LeagueAccessCode;
+import com.mad.dto.LeagueMemberDTO;
 import com.mad.dto.LeagueRankingDetails;
 import com.mad.models.LeagueDetails;
 import com.mad.models.LeagueMemebers;
 import com.mad.models.MADUser;
+import com.mad.service.LeagueMemberToLeagueMemberDto;
 import com.mad.service.LeagueService;
 
 @RestController
@@ -23,6 +26,9 @@ public class LeagueController {
 	@Autowired
 	LeagueService leagueService;
 	
+	@Autowired
+	LeagueMemberToLeagueMemberDto leagueMemberToLeagueMemberDto;
+	
 	@PostMapping("/league")
 	public ResponseEntity<LeagueDetails> saveLeague(@RequestBody LeagueDetails leagueDetails){
 		
@@ -30,23 +36,23 @@ public class LeagueController {
 	}
 	
 	@PostMapping("/league/{leagueId}/user/{userId}")
-	public ResponseEntity<LeagueMemebers> saveMemberToLeague(@PathVariable int leagueId, @PathVariable int userId ){
+	public ResponseEntity<LeagueMemberDTO> saveMemberToLeague(@PathVariable int leagueId, @PathVariable int userId ){
 
-		return  ResponseEntity.ok(leagueService.saveUserToLeagueMember(leagueId, userId).get());
+		return  ResponseEntity.ok(leagueMemberToLeagueMemberDto.convert(leagueService.saveUserToLeagueMember(leagueId, userId).get()));
 	}
 	
 	
 	@GetMapping("/league/{leagueId}/users")
-	public ResponseEntity<List<LeagueMemebers>> getLeagueMemberDetails(@PathVariable int leagueId){
+	public ResponseEntity<List<LeagueMemberDTO>> getLeagueMemberDetails(@PathVariable int leagueId){
 		
-		return  ResponseEntity.ok(leagueService.findMembersOfLeague(leagueId).get());
+		return  ResponseEntity.ok(leagueMemberToLeagueMemberDto.convert(leagueService.findMembersOfLeague(leagueId).get()));
 	}
 	
-	@PostMapping("/league/accesscode/{accessCode}/user/{userId}")
-	public ResponseEntity<LeagueMemebers> addMemberToLeagueByAccessCode(@PathVariable String accessCode
+	@PostMapping("user/{userId}/league")
+	public ResponseEntity<LeagueMemberDTO> addMemberToLeagueByAccessCode(@RequestBody LeagueAccessCode leagueAccessCode
 			,@PathVariable int userId){
 		
-		return  ResponseEntity.ok(leagueService.addMemberToLeagueByAccessCode(accessCode,userId).get());
+		return  ResponseEntity.ok(leagueMemberToLeagueMemberDto.convert(leagueService.addMemberToLeagueByAccessCode(leagueAccessCode.getAccessCode(), userId).get()));
 	}
 	
 	@GetMapping("/league/search/{leagueName}") //search by league name

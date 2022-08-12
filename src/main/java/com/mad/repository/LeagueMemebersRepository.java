@@ -19,4 +19,7 @@ public interface LeagueMemebersRepository extends JpaRepository<LeagueMemebers, 
 	
 	@Query(value ="Select * from league_memebers lm where  user_id= ?1", nativeQuery = true)
 	Optional<List<LeagueMemebers>> findbyUserId(int userId);
+	
+	@Query(value ="Select * from league_memebers lm where  user_id= ?1 and league_id= ?2 ", nativeQuery = true)
+	Optional<List<LeagueMemebers>> findbyUserIdAndLeagueId(int userId, int leagueId );
 }
