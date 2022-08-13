@@ -14,6 +14,8 @@ import lombok.ToString;
 
 
 // Reference: https://github.com/JeremyTsaii/leetcode-stats-api/blob/main/src/main/java/leetcode/api/model/StatsResponse.java
+
+@ToString
 public class LeetcodeUserDetails {
 	
 	   private final String status;
@@ -121,6 +123,8 @@ public class LeetcodeUserDetails {
 
 	        return status.equals(s.getStatus()) && message.equals(s.getMessage()) && totalSolved == s.getTotalSolved() && totalQuestions == s.getTotalQuestions() && easySolved == s.getEasySolved() && totalEasy == s.getTotalEasy() && mediumSolved == s.getMediumSolved() && totalMedium == s.getTotalMedium() && hardSolved == s.getHardSolved() && totalHard == s.getTotalHard() && acceptanceRate == s.getAcceptanceRate() && ranking == s.getRanking() && contributionPoints == s.getContributionPoints() && reputation == s.getReputation();
 	    }
+	    
+	    
 	    
 	}
 	

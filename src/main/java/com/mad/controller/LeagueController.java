@@ -73,7 +73,7 @@ public class LeagueController {
 		
 	}
 	
-	@GetMapping("league/{leagueId}/rank/memebers") 
+	@GetMapping("league/{leagueId}/rank/memebers")
 	public  ResponseEntity<List<LeagueRankingDetails>> rankLeagueMembersByLeague(@PathVariable int leagueId){
 		//to do: buggy, same user is saved twice in league members
 		//to do: ranking is not correct

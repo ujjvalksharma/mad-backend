@@ -128,18 +128,22 @@ public class LeagueService {
 
 	public Optional<List<LeagueRankingDetails>> rankMembers(List<LeagueMemebers> leagueMembers) {
 		
+		System.out.println("leagueMembers: "+leagueMembers);
 		List<LeagueRankingDetails>  ListOfleagueRankingDetails=new ArrayList<LeagueRankingDetails>();
+		
 		for(LeagueMemebers leagueMember: leagueMembers) {
 			
 		LeetcodeUserDetails leetcodeUserDetails=
 				leetcodeService.getLeetcodeUserDetails(mADUserRepository.findById(leagueMember
 						.getUserId()).get().getUsername());
 		
-		int newHardProblemSolved=leetcodeUserDetails.getHardSolved()-leagueMember.getEasySolvedOnDateOfJoiningLeague();
+		int newHardProblemSolved=leetcodeUserDetails.getHardSolved()-leagueMember.getHardSolvedOnDateOfJoiningLeague();
 		int newEasyProblemSolved=leetcodeUserDetails.getEasySolved()-leagueMember.getEasySolvedOnDateOfJoiningLeague();
 		int newMediumProblemSolved=leetcodeUserDetails.getMediumSolved()-leagueMember.getMediumSolvedOnDateOfJoiningLeague();
 		int leaguePoints= newEasyProblemSolved+ 2*newMediumProblemSolved+3*newHardProblemSolved;
 		
+		
+		System.out.println("leagueMember: "+leagueMember+" leetcodeUserDetails: "+leetcodeUserDetails);
 		LeagueRankingDetails leagueRankingDetails=LeagueRankingDetails
 				                                  .builder()
 				                                  .points(leaguePoints)
@@ -150,12 +154,12 @@ public class LeagueService {
 		
 		ListOfleagueRankingDetails.add(leagueRankingDetails);
 		
+		}
+		
 		Collections.sort(ListOfleagueRankingDetails,(l1,l2)->l2.getPoints()-l1.getPoints());
 		
 		for(int i=0;i<ListOfleagueRankingDetails.size();i++) {
-			ListOfleagueRankingDetails.get(i).setPoints(i+1);
-		}
-		
+			ListOfleagueRankingDetails.get(i).setRank(i+1);
 		}
 		
 		return Optional.of(ListOfleagueRankingDetails);
