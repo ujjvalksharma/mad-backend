@@ -3,6 +3,7 @@ package com.mad.models;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -39,7 +40,8 @@ public class MADUser implements Serializable{
 	private String password;
 	private int isReminderOn;
 	private int coins;
-	private byte[] profilePic;
+	@Column(length=1000)
+	private String profilePic;
 	private String billingAddress;
 
 }
