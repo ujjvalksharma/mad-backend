@@ -40,5 +40,6 @@ public class MADUser implements Serializable{
 	private int isReminderOn;
 	private int coins;
 	private byte[] profilePic;
+	private String billingAddress;
 
 }

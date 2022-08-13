@@ -67,7 +67,7 @@ public class MyUserDetailsService implements UserDetailsService {
     			.build());
   
     	
-    	
+    	madUser.setBillingAddress("Northeastern University, Boston, MA");
     return Optional.of(MADUserRepository.save(madUser));
     
     }
