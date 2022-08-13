@@ -45,7 +45,7 @@ class AuthController {
 	@PostMapping("/authenticate")
 	public ResponseEntity<AuthenticationResponse> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
 
-		try {
+	/*	try {
 			authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword())
 			);
@@ -53,7 +53,7 @@ class AuthController {
 		catch (BadCredentialsException e) {
 			throw new Exception("Incorrect username or password", e);
 		}
-
+*/
 
 		final UserDetails userDetails = userDetailsService
 				.loadUserByUsername(authenticationRequest.getUsername());
@@ -65,11 +65,11 @@ class AuthController {
 		}
 		
 
-		final String jwt = jwtTokenUtil.generateToken(userDetails);
+	//	final String jwt = jwtTokenUtil.generateToken(userDetails);
 
 		AuthenticationResponse authenticationResponse=AuthenticationResponse
 				.builder()
-				.jwt(jwt)
+				.jwt("jwt")
 				.mADUser(mADUser)
 				.build();
 		return ResponseEntity.ok(authenticationResponse);
