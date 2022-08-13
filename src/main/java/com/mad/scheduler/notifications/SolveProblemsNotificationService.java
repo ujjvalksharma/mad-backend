@@ -45,6 +45,8 @@ public class SolveProblemsNotificationService {
 		MADUser madUser=usersToBeReminded.get(i);
 	//	List<UserToken> userTokens=userTokenRepository.findByUserId(madUser.getId()).get();
 	//	for(UserToken userToken: userTokens) {
+		
+		Runnable runnable = ()->{
 			Notification innerNotificationObj=Notification
 					.builder()
 					.body("Solve leetcode problem "+leetcodeProblemNumber)
@@ -57,6 +59,8 @@ public class SolveProblemsNotificationService {
 					.notification(innerNotificationObj)
 					.build();
         fireBaseNotificationClient.sendNotification(AUTHORIZATION, contentType, outerNotification);
+		};
+		new Thread(runnable).start();
         
 	//	}
 		

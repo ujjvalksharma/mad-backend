@@ -48,6 +48,14 @@ public class UserController {
 		return  ResponseEntity.ok(myUserDetailsService.save(madUser).get());
 	}
 	
+	@GetMapping("/user/{userId}")
+	public ResponseEntity<MADUser> saveUser(@PathVariable int userId){
+		
+		return  ResponseEntity.ok(mADUserRepository.findById(userId).get());
+	}
+	
+	
+	
 	@PutMapping("/user")
 	public ResponseEntity<MADUser> updateUser( @RequestBody MADUser madUser){
 		
