@@ -21,8 +21,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.mad.models.MADUser;
+import com.mad.controller.NotificationController;
 import com.mad.dto.LeagueRankingDetails;
 import com.mad.dto.LeetcodeUserDetails;
+import com.mad.dto.Notification;
 import com.mad.models.LeagueDetails;
 import com.mad.models.LeagueMemebers;
 import com.mad.repository.LeagueMemebersRepository;
@@ -44,6 +46,12 @@ public class LeagueService {
 	
 	@Autowired
 	LeagueMemebersRepository leagueMemebersRepository;
+	
+	@Autowired
+	NotificationController notificationController;
+	
+	@Autowired
+	LeagueMemberToLeagueMemberDto leagueMemberToLeagueMemberDto;
 
 	public Optional<LeagueDetails> saveLeague(LeagueDetails leagueDetails) {
 
@@ -90,6 +98,38 @@ public class LeagueService {
 				                           .userId(userId)
 				                           .joiningDate(formatter.format(date))
 				                           .build();
+		
+		LeagueDetails leagueDetails=leagueRepository.findById(leagueId).get(); 
+		Runnable runnable=()->{
+			
+			List<LeagueMemebers> allLeagueMembers = leagueMemebersRepository.findbyLeagueId(leagueId).get();
+			List<LeagueMemebers> otherLeagueMembers =	allLeagueMembers
+			.stream()
+			.filter((leagueMember)->leagueMember.getUserId()!=userId)
+			.collect(Collectors.toList());
+			
+			for(LeagueMemebers member: otherLeagueMembers) {
+				
+				Runnable runnableTemp =()->{
+					
+				Notification notification= Notification
+						.builder()
+						.title("new memeber added to the league: "+leagueDetails.getLeagueName())
+						.body("Keeping coding! Competetion never stops!!")
+						.build();
+				notificationController.sendNotification(member.getUserId(),notification );
+				
+				};
+				new Thread(runnableTemp).start();
+				
+			}
+			
+		};
+			
+		new Thread(runnable).start();
+	/*	
+		*/
+		
 		return Optional.of(leagueMemebersRepository.save(leagueMemebers));
 	}
 	
@@ -142,13 +182,16 @@ public class LeagueService {
 		int newMediumProblemSolved=leetcodeUserDetails.getMediumSolved()-leagueMember.getMediumSolvedOnDateOfJoiningLeague();
 		int leaguePoints= newEasyProblemSolved+ 2*newMediumProblemSolved+3*newHardProblemSolved;
 		
+		int totalPointsFromLeetcode=leagueMember.getEasySolvedOnDateOfJoiningLeague()
+				+2*leagueMember.getMediumSolvedOnDateOfJoiningLeague()
+				+3*leagueMember.getHardSolvedOnDateOfJoiningLeague();
 		
 		System.out.println("leagueMember: "+leagueMember+" leetcodeUserDetails: "+leetcodeUserDetails);
 		LeagueRankingDetails leagueRankingDetails=LeagueRankingDetails
 				                                  .builder()
 				                                  .points(leaguePoints)
-				                                  .leagueId(leagueMember.getLeagueId())
-				                                  .leagueMemebers(leagueMember)
+				                                  .leetcodePoints(totalPointsFromLeetcode)
+				                                  .leagueMemberDTO(leagueMemberToLeagueMemberDto.convert(leagueMember))
 				                                  .rank(0)
 				                                  .build();
 		
@@ -156,7 +199,12 @@ public class LeagueService {
 		
 		}
 		
-		Collections.sort(ListOfleagueRankingDetails,(l1,l2)->l2.getPoints()-l1.getPoints());
+		Collections.sort(ListOfleagueRankingDetails,(l1,l2)->{
+			if(l2.getPoints()==l1.getPoints()) {
+				return l2.getLeetcodePoints()-l1.getLeetcodePoints();
+			}
+			return l2.getPoints()-l1.getPoints();
+		});
 		
 		for(int i=0;i<ListOfleagueRankingDetails.size();i++) {
 			ListOfleagueRankingDetails.get(i).setRank(i+1);

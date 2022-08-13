@@ -38,27 +38,27 @@ public class SolveProblemsNotificationService {
 	public void sendNotificationToSolveProblems() {
 		
 		System.out.println("notification scheduler is running");
+		 int leetcodeProblemNumber = (int) (Math.random() * (1000 - 1)) + 1;
 		List<MADUser> usersToBeReminded=mADUserRepository.findByIsReminderOn(1).get();
 		
 	for(int i=0;i<usersToBeReminded.size();i++) {
 		MADUser madUser=usersToBeReminded.get(i);
-		List<UserToken> userTokens=userTokenRepository.findByUserId(madUser.getId()).get();
-		for(UserToken userToken: userTokens) {
-			
+	//	List<UserToken> userTokens=userTokenRepository.findByUserId(madUser.getId()).get();
+	//	for(UserToken userToken: userTokens) {
 			Notification innerNotificationObj=Notification
 					.builder()
-					.body("Solve leetcode problem 123")
+					.body("Solve leetcode problem "+leetcodeProblemNumber)
 					.title("Stay ahead in the leagues!!")
 					.build();
 	
 			OuterNotification outerNotification=OuterNotification
 					.builder()
-					.to(userToken.getToken())
+					.to(madUser.getToken())
 					.notification(innerNotificationObj)
 					.build();
         fireBaseNotificationClient.sendNotification(AUTHORIZATION, contentType, outerNotification);
         
-		}
+	//	}
 		
 	}
 	}

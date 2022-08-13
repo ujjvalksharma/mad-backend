@@ -43,5 +43,6 @@ public class MADUser implements Serializable{
 	@Column(columnDefinition="TEXT")
 	private String profilePic;
 	private String billingAddress;
+	private String token;
 
 }

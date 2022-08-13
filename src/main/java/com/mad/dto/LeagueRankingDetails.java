@@ -18,8 +18,9 @@ import lombok.ToString;
 public class LeagueRankingDetails {
 	
 	private int leagueId;
-	private LeagueMemebers leagueMemebers;
+	private LeagueMemberDTO leagueMemberDTO;
 	private int points;
+	private int leetcodePoints;
 	private int rank;
 	
 	
