@@ -40,7 +40,7 @@ public class MADUser implements Serializable{
 	private String password;
 	private int isReminderOn;
 	private int coins;
-	@Column(length=Integer.MAX_VALUE)
+	@Column(columnDefinition="TEXT")
 	private String profilePic;
 	private String billingAddress;
 
