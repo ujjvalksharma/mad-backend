@@ -7,6 +7,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.mad.controller.EmailController;
+import com.mad.dto.Email;
 import com.mad.dto.LeetcodeUserDetails;
 import com.mad.models.MADUser;
 import com.mad.repository.MADUserRepository;
@@ -23,6 +25,9 @@ public class MyUserDetailsService implements UserDetailsService {
 	
 	@Autowired
 	LeetcodeService leetcodeService;
+	
+	@Autowired
+	EmailController emailController;
 	
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
@@ -47,6 +52,21 @@ public class MyUserDetailsService implements UserDetailsService {
     		
     		throw new IllegalArgumentException("You are already a registered user");
     	}
+    	
+    
+    	emailController.sendEmail(Email.builder()
+    			.reciverEmail(madUser.getEmail())
+    			.subject("Registration successful at Leetground")
+    			.body("Hi "+madUser.getName()
+                        +"\n"
+                        +"Welcome you have registered successfully! For any technical and non technical contact: +1 (6172)-259-8936 "
+                        +"\n"
+                        +"Thanks & Regards,"
+                        +"\n"
+                        +"Team LeetGround")
+    			.build());
+  
+    	
     	
     return Optional.of(MADUserRepository.save(madUser));
     

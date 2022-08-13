@@ -19,14 +19,18 @@ public class EmailController {
 	@PostMapping("/email")
 	public ResponseEntity<String> sendEmail(@RequestBody Email email){
 		
-		
+		Runnable  runnable =()->{
+			
 		SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("ujjvalksharma@gmail.com");
-        message.setTo(email.getSenderEmail());
+        message.setTo(email.getReciverEmail());
         message.setText(email.getBody());
         message.setSubject(email.getSubject());
         mailSender.send(message);
         
+	};
+        
+        new Thread(runnable).start();
 		return ResponseEntity.ok("success");
 	}
 

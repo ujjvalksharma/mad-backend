@@ -18,7 +18,7 @@ import lombok.ToString;
 @AllArgsConstructor
 public class Email  implements Serializable{
 
-	String senderEmail;
+	String reciverEmail;
 	String subject;
 	String body;
 }
