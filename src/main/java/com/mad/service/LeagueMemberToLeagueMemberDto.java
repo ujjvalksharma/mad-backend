@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.mad.models.LeagueMemebers;
+import com.mad.repository.LeagueMemebersRepository;
 import com.mad.repository.LeagueRepository;
 import com.mad.repository.MADUserRepository;
 import com.mad.dto.LeagueMemberDTO;
@@ -18,6 +19,9 @@ public class LeagueMemberToLeagueMemberDto {
 	
 	@Autowired
 	LeagueRepository leagueRepository;
+	
+	@Autowired
+	LeagueMemebersRepository leagueMemebersRepository;
 	
 	public List<LeagueMemberDTO> convert(List<LeagueMemebers> leagueMemebers){
 	return	leagueMemebers
@@ -39,6 +43,7 @@ public class LeagueMemberToLeagueMemberDto {
 		.joiningDate(leagueMemeber.getJoiningDate())
 		.leagueDetails(leagueRepository.findById(leagueMemeber.getLeagueId()).get())
 		.mADUser(mADUserRepository.findById(leagueMemeber.getUserId()).get())
+		.totalMembersALeague(leagueMemebersRepository.findbyLeagueId(leagueMemeber.getLeagueId()).get().size())
 		.build();
 		
 	}

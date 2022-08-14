@@ -49,8 +49,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/user/{userId}")
-	public ResponseEntity<MADUser> saveUser(@PathVariable int userId){
-		
+	public ResponseEntity<MADUser> getUserDetails(@PathVariable int userId){
 		return  ResponseEntity.ok(mADUserRepository.findById(userId).get());
 	}
 	

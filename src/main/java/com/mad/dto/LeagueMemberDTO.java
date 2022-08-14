@@ -27,6 +27,7 @@ public class LeagueMemberDTO {
 	private int hardSolved;
 	private int totalSolved;
 	private MADUser mADUser;
+	private int totalMembersALeague;
 	
 	
 }
