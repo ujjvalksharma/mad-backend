@@ -22,7 +22,7 @@ import com.mad.repository.UserTokenRepository;
 public class SolveProblemsNotificationService {
 
 	//SERVER KEY
-	final String AUTHORIZATION="key=AAAASxTK1Zc:APA91bGYwZrw31HYrALDg1Z5o50EY6N4PbME-TbREE9kmTPsz-lxJ7lpVI6fo_bZUT0J5Zo0pa8c_cphzcS4W_EbueJcFUUkA4LP4NS1wuwbeeBw2PM-wxl2TqeROpFc84ClYZwdTjkI";
+	final String AUTHORIZATION="key=AAAAHd2rzEo:APA91bHWLlQRn2lgiKbQ59J3J-C_T2T5bn-51Sh_GcgAynQMN8yIn3mVGhSEJ96jO280LagU-zOtrpIQ2TKnyp6mWY5Tis_WUkWoC6zeued8SC80Gtz0LeIyJX2sjPkEcJox6wCVhIH0";
 	
 	final String contentType="application/json";
 	@Autowired
